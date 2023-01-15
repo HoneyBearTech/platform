@@ -1,0 +1,13 @@
+- name: Remote Setup of UFW
+  hosts: "*"
+  become: yes
+  tasks:
+    - name: Allow OpenSSH in UFW
+      ufw:
+        rule: allow
+        name: OpenSSH
+        comment: Allow OpenSSH
+    - name: Enable UFW
+      ufw:
+        state: enabled
+        policy: deny
