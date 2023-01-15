@@ -6,9 +6,9 @@
       apt:
         update_cache: yes
         upgrade: 'yes'
-    - name: reboot host(s)
+    - name: Reboot Host(s)
       ansible.builtin.reboot:
-        msg: "reboot by Ansible"
+        msg: "Reboot by Ansible"
         pre_reboot_delay: 5
         post_reboot_delay: 10
         test_command: "whoami"
