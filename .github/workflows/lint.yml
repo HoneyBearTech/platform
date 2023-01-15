@@ -41,7 +41,6 @@ jobs:
       - name: Run linters
         uses: wearerequired/lint-action@v2.2.0
         with:
-         #github_token: ${{ secrets.TOKEN }}
           auto_fix: true
           black: true
           black_auto_fix: true
