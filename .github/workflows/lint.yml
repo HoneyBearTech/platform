@@ -30,6 +30,7 @@ jobs:
       - name: Run linters
         uses: wearerequired/lint-action@v2.2.0
         with:
+          github_token: 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
           auto_fix: true
           black: true
           black_auto_fix: true
