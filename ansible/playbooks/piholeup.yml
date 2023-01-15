@@ -1,0 +1,11 @@
+- name: Update pihole
+  hosts: "*"
+  tasks:
+  - name: pihole Update
+    shell: pihole -up
+  - name: Reboot Host(s)
+    ansible.builtin.reboot:
+      msg: "Reboot by Ansible"
+      pre_reboot_delay: 5
+      post_reboot_delay: 10
+      test_command: "whoami"    
