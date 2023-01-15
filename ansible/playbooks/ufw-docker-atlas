@@ -1,0 +1,48 @@
+- name: Allow SSH, Enable UFW, Install UFW-Docker Utility, Add UFW Exceptions for Atlas Server
+  hosts: "*"
+  become: yes
+  tasks:
+  - name: Allow OpenSSH in UFW
+    ufw:
+      rule: allow
+      name: OpenSSH
+      comment: Allow OpenSSH  
+  - name: Enable UFW
+    ufw:
+     state: enabled
+     policy: deny  
+  - name: Download UFW-Docker and Set Executable
+    ansible.builtin.get_url:
+      url: https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker
+      dest: /usr/local/bin/ufw-docker
+      mode: +x
+  - name: Install UFW-Docker
+    ansible.builtin.command: ufw-docker install
+  - name: Allow connections from Local Docker Networks
+    community.general.ufw:
+      rule: allow
+      src: '{{ item }}'
+      comment: Atlas Docker Networks
+    loop:
+      - 172.17.0.0/16
+      - 172.23.0.0/16
+  - name: Expose Port 2375 to allow Docker to report to Uptime-Kuma
+    community.general.ufw:
+      rule: allow
+      port: '2375'
+      comment: Uptime-Kuma Reporting HTTP
+  - name: Expose Port 2376 to allow Docker to report to Uptime-Kuma
+    community.general.ufw:
+      rule: allow
+      port: '2376'
+      comment: Uptime-Kuma Reporting HTTPS
+  - name: Expose Port 111 to allow NFS
+    community.general.ufw:
+      rule: allow
+      port: '111'
+      comment: NFS Portmapper
+  - name: Expose Port 2049 to allow NFS
+    community.general.ufw:
+      rule: allow
+      port: '2049'
+      comment: Network File System (NFS) - remote filesystem access
