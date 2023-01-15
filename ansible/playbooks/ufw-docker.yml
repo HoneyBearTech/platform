@@ -1,0 +1,15 @@
+- name: Remote Download of UFW-Docker Utility
+  hosts: "*"
+  become: yes
+  tasks:
+  - name: Enable UFW
+    ufw:
+     state: enabled
+     policy: deny  
+  - name: Download UFW-Docker and Set Executable
+    ansible.builtin.get_url:
+      url: https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker
+      dest: /usr/local/bin/ufw-docker
+      mode: +x
+  - name: Install UFW-Docker
+    ansible.builtin.command: ufw-docker install
