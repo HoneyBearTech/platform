@@ -29,7 +29,7 @@ jobs:
         #   example:
         #   group: 'servers'
         #
-        # hosts: ""
+        hosts: "localhost"
         #  [optional]
         #   When testing playbooks you have to give one example
         #   host this action should use to test your playbook.
@@ -39,13 +39,13 @@ jobs:
         #   hosts: 'localhost'
         #   hosts: 'srv01.example.com'
         #
-        # requirements: ""
+        requirements: "community.general.6.2.0"
         #  [optional]
         #   When testing playbooks and you are using ansible galaxy,
         #   you may be interested in installing your requirements
         #   from ansible galaxy.
         #   To do this please provide us either the role name directly
-        #   requirements: 'do1jlr.ansible_version'
+        #   requirements: 'community.general.6.2.0'
         #   or your requiements.yml file.
         #   requirements: 'requirements.yml'
     - name: Perform integration testing with ansible-test
