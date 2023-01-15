@@ -9,7 +9,19 @@ on:
   pull_request:
     branches:
       - main
-
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  id-token: read
+  issues: write
+  packages: write
+  pages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
 jobs:
   run-linters:
     name: Run linters
