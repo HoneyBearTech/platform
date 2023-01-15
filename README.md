@@ -1,5 +1,9 @@
 # platform 🚉
 
+![lint workflow](https://github.com/HoneyBearTech/platform/actions/workflows/lint.yml/badge.svg)
+
+
+
 ## Info
 
 A collection of quick starters for ansible and docker.
