@@ -49,7 +49,7 @@ jobs:
         #   or your requiements.yml file.
         #   requirements: 'requirements.yml'
     - name: Perform integration testing with ansible-test
-      uses: ansible-community/ansible-test-gh-action@release/v1.12.0
+      uses: ansible-community/ansible-test-gh-action@release/v1
       with:
         ansible-core-version: stable-2.14.1
         pre-test-cmd: echo This runs before the ansible-test invocation
@@ -58,12 +58,12 @@ jobs:
         testing-type: integration
         test-deps: ansible.netcommon
     - name: Perform sanity testing with ansible-test
-      uses: ansible-community/ansible-test-gh-action@release/v1.12.0
+      uses: ansible-community/ansible-test-gh-action@release/v1
       with:
         ansible-core-version: stable-2.14.1
         testing-type: sanity
     - name: Perform unit testing with ansible-test
-      uses: ansible-community/ansible-test-gh-action@release/v1.12.0
+      uses: ansible-community/ansible-test-gh-action@release/v1
       with:
         ansible-core-version: stable-2.14.1
         pre-test-cmd: echo This runs before the ansible-test invocation
