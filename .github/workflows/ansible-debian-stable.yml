@@ -39,7 +39,7 @@ jobs:
         #   hosts: 'localhost'
         #   hosts: 'srv01.example.com'
         #
-        requirements: "community.general.6.2.0"
+        requirements: "general.6.2.0"
         #  [optional]
         #   When testing playbooks and you are using ansible galaxy,
         #   you may be interested in installing your requirements
