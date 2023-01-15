@@ -1,3 +1,4 @@
+---
 - name: Setup UFW for Hyperion Server
   hosts: "*"
   become: yes
@@ -48,10 +49,10 @@
       comment: Network File System (NFS) - remote filesystem access
   - name: Plex Media Server (Standard + DLNA) TCP
     community.general.ufw:
-       rule: "allow"
-       port: "{{ item }}"
-       proto: "tcp"
-       comment: Plex Media Server (Standard + DLNA) TCP
+      rule: "allow"
+      port: "{{ item }}"
+      proto: "tcp"
+      comment: Plex Media Server (Standard + DLNA) TCP
     with_items:
       - "32400"
       - "3005"
