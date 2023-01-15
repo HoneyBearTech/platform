@@ -1,6 +1,6 @@
 # platform 🚉
 
-![lint workflow](https://github.com/HoneyBearTech/platform/actions/workflows/lint.yml/badge.svg)
+![lint workflow](https://github.com/HoneyBearTech/platform/actions/workflows/lint.yml/badge.svg) ![lint workflow](https://github.com/HoneyBearTech/platform/actions/workflows/prettier.yml/badge.svg)
 
 ## Info
 
