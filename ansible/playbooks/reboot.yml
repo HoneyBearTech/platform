@@ -2,7 +2,7 @@
   hosts: "*"
   become: true
   tasks:
-    - name: reboot host(s)
+    - name: Reboot Host(s)
       ansible.builtin.reboot:
         msg: "reboot by Ansible"
         pre_reboot_delay: 5
