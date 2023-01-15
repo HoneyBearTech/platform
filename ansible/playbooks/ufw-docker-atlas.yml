@@ -3,12 +3,12 @@
   become: yes
   tasks:
   - name: Allow OpenSSH in UFW
-    ufw:
+    community.general.ufw:
       rule: allow
       name: OpenSSH
       comment: Allow OpenSSH  
   - name: Enable UFW
-    ufw:
+    community.general.ufw:
      state: enabled
      policy: deny  
   - name: Download UFW-Docker and Set Executable
