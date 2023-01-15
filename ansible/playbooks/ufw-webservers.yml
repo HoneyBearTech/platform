@@ -1,0 +1,18 @@
+- name: Remote Setup of UFW and Docker Exceptions for Webservers
+  hosts: "*"
+  become: yes
+  tasks:
+    - name: Allow OpenSSH in UFW
+      ufw:
+        rule: allow
+        name: OpenSSH
+        comment: Allow OpenSSH
+    - name: Allow NGINX Full in UFW
+      ufw:
+        rule: allow
+        name: Nginx Full
+        comment: Allow NGINX
+    - name: Enable UFW
+      ufw:
+        state: enabled
+        policy: deny
