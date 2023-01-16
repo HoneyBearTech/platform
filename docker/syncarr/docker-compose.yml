@@ -1,0 +1,14 @@
+version: '3'
+services:
+ syncarr:
+    image: syncarr/syncarr:latest
+    container_name: syncarr
+    restart: unless-stopped
+    environment:
+        RADARR_A_URL: 0.0.0.0 #IP of 4k Radarr or Sonarr
+        RADARR_A_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx #API Key of 4k Radarr or Sonarr 
+        RADARR_B_URL: 0.0.0.0 # IP of HD Radarr or Sonarr
+        RADARR_B_KEY: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # API Key of HD Radarr or Sonarr
+        RADARR_B_PROFILE: #HD Profile
+        RADARR_B_PATH: /media/movies # HD Root Folder
+        SYNC_INTERVAL_SECONDS: 300

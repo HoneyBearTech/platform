@@ -1,0 +1,23 @@
+version: '3'
+services:
+ calibre:
+    image: lscr.io/linuxserver/calibre:latest
+    container_name: calibre
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+      - PASSWORD= #optional
+      - CLI_ARGS= #optional
+    volumes:
+      - calibre:/config
+      - /nfs/media:/media
+    ports:
+      - 6060:8080
+      - 6061:8081
+    restart: unless-stopped
+volumes:
+    calibre:
+        external: false

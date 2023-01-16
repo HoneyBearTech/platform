@@ -1,0 +1,18 @@
+version: '3'
+services:
+ bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - bazarr:/config
+      - /nfs/media:/media
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+volumes:
+    bazarr:
+        external: false
