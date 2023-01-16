@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 # 3.0.11
         with:
           path: ~/.ansible/collections
-          key: ${{ runner.os }}-ansible-${{ hashFiles('collections/requirements.txt') }}
+          key: ${{ runner.os }}-ansible-${{ hashFiles('./requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-ansible-
 
@@ -44,11 +44,11 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::Install Python requirements from requirements.txt"
-          python3 -m pip install -r requirements.txt
+          python3 -m pip install -r ./requirements.txt
           echo "::endgroup::"
 
-          echo "::group::Install Ansible role requirements from collections/requirements.yml"
-          ansible-galaxy install -r collections/requirements.yml
+          echo "::group::Install Ansible role requirements from requirements.yml"
+          ansible-galaxy install -r ./requirements.yml
           echo "::endgroup::"
 
       - name: Run pre-commit
