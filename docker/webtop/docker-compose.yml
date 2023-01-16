@@ -15,5 +15,3 @@
           - 3000:3000
         shm_size: "2gb" #optional but set to 1GB or higher to prevent browser crashes
         restart: unless-stopped
-        # env_file:  #only necessary if you want to change the password, see .env file
-        #   - .env
