@@ -1,4 +1,3 @@
-
 <!-- It's a good idea to check this post first for general troubleshooting https://github.com/techno-tim/k3s-ansible/discussions/19   -->
 
 <!--- Provide a general summary of the issue in the Title above -->
@@ -8,6 +7,7 @@
 <!--- Tell us what should happen -->
 
 ## Current Behavior
+
 <!--- Tell us what happens instead of the expected behavior -->
 
 ## Steps to Reproduce
@@ -20,6 +20,7 @@
 4.
 
 ## Context (variables)
+
 <!--- please include which OS, along with the variables used when running the playbook -->
 
 Operating system:
@@ -72,4 +73,5 @@ node
 ```
 
 ## Possible Solution
+
 <!--- Not obligatory, but suggest a fix/reason for the bug, -->

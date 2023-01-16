@@ -4,8 +4,6 @@
 ![Lint](https://github.com/HoneyBearTech/k3s-ansible/actions/workflows/lint.yml/badge.svg)
 ![Test](https://github.com/HoneyBearTech/k3s-ansible/actions/workflows/test.yml/badge.svg)
 
-
-
 This playbook will build an HA Kubernetes cluster with `k3s`, `kube-vip` and MetalLB via `ansible`.
 
 This is based on the work from [this fork](https://github.com/212850a/k3s-ansible) which is based on the work from [k3s-io/k3s-ansible](https://github.com/k3s-io/k3s-ansible). It uses [kube-vip](https://kube-vip.chipzoller.dev/) to create a load balancer for control plane, and [metal-lb](https://metallb.universe.tf/installation/) for its service `LoadBalancer`.
@@ -26,13 +24,13 @@ Build a Kubernetes cluster using Ansible with k3s. The goal is easily install a 
 
 on processor architecture:
 
-- [X] x64
-- [X] arm64
-- [X] armhf
+- [x] x64
+- [x] arm64
+- [x] armhf
 
 ## ✅ System requirements
 
-- Deployment environment must have Ansible 2.4.0+.  If you need a quick primer on Ansible [you can check out my docs and setting up Ansible](https://docs.technotim.live/posts/ansible-automation/).
+- Deployment environment must have Ansible 2.4.0+. If you need a quick primer on Ansible [you can check out my docs and setting up Ansible](https://docs.technotim.live/posts/ansible-automation/).
 
 - You will also need to install collections that this playbook uses by running `ansible-galaxy collection install -r ./collections/requirements.yml` (important❗)
 
@@ -91,7 +89,7 @@ After deployment control plane will be accessible via virtual ip-address which i
 ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 ```
 
->You should also reboot these nodes due to the VIP not being destroyed
+> You should also reboot these nodes due to the VIP not being destroyed
 
 ## ⚙️ Kube Config
 
@@ -118,7 +116,7 @@ You can find more information about it [here](molecule/README.md).
 
 ### Pre-commit Hooks
 
-This repo uses `pre-commit` and `pre-commit-hooks` to lint and fix common style and syntax errors.  Be sure to install python packages and then run `pre-commit install`.  For more information, see [pre-commit](https://pre-commit.com/)
+This repo uses `pre-commit` and `pre-commit-hooks` to lint and fix common style and syntax errors. Be sure to install python packages and then run `pre-commit install`. For more information, see [pre-commit](https://pre-commit.com/)
 
 ## Thanks 🤝
 
