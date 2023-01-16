@@ -44,11 +44,11 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::Install Python requirements from requirements.txt"
-          python3 -m pip install -r requirements.txt
+          python3 -m pip install -r ~/requirements.txt
           echo "::endgroup::"
 
           echo "::group::Install Ansible role requirements from requirements.yml"
-          ansible-galaxy install -r requirements.yml
+          ansible-galaxy install -r ~/requirements.yml
           echo "::endgroup::"
 
       - name: Run pre-commit
