@@ -1,6 +1,7 @@
-- name: Remote Setup of UFW and Docker Exceptions for Webservers
+---
+- name: Setup UFW for Webservers
   hosts: "*"
-  become: yes
+  become: true
   tasks:
     - name: Allow OpenSSH in UFW
       community.general.ufw:

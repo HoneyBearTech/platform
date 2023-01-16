@@ -1,6 +1,7 @@
+---
 - name: Remote Update of Ubuntu Servers
   hosts: "*"
-  become: yes
+  become: true
   tasks:
     - name: apt
       apt:

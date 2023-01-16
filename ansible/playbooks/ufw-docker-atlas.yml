@@ -1,6 +1,7 @@
-- name: Allow SSH, Enable UFW, Install UFW-Docker Utility, Add UFW Exceptions for Atlas Server
+---
+- name: Setup UFW for Atlas Server
   hosts: "*"
-  become: yes
+  become: true
   tasks:
   - name: Allow OpenSSH in UFW
     community.general.ufw:

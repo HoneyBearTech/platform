@@ -1,3 +1,4 @@
+---
 - name: Update pihole
   hosts: "*"
   tasks:

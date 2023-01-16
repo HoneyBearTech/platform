@@ -1,6 +1,7 @@
+---
 - name: Remote Download of UFW-Docker Utility
   hosts: "*"
-  become: yes
+  become: true
   tasks:
   - name: Enable UFW
     community.general.ufw:

@@ -1,3 +1,4 @@
+---
 - name: Install Docker engine
   hosts: "*"
   become: true

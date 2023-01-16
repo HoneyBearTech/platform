@@ -1,3 +1,4 @@
+---
 - name: Remote Reboot of Ubuntu Servers
   hosts: "*"
   become: true

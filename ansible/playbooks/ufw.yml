@@ -1,6 +1,7 @@
-- name: Remote Setup of UFW
+---
+- name: Setup of UFW
   hosts: "*"
-  become: yes
+  become: true
   tasks:
     - name: Allow OpenSSH in UFW
       community.general.ufw:

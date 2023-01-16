@@ -1,3 +1,4 @@
+---
 - name: Check if restart is required
   hosts: all
   tasks:
