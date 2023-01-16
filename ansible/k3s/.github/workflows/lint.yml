@@ -32,7 +32,7 @@ jobs:
       - name: Cache Ansible
         uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 # 3.0.11
         with:
-          path: ~/.ansible/collections
+          path: ~/
           key: ${{ runner.os }}-ansible-${{ hashFiles('requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-ansible-
