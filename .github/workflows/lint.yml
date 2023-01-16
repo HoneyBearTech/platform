@@ -1,48 +1,68 @@
-name: Lint
-
+---
+name: Linting
 on:
-  # Trigger the workflow on push or pull request,
-  # but only for the main branch
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-permissions:
-  actions: write
-  checks: write
-  contents: write
-  deployments: write
-  issues: write
-  packages: write
-  pages: write
-  pull-requests: write
-  repository-projects: write
-  security-events: write
-  statuses: write
+  workflow_call:
 jobs:
-  run-linters:
-    name: Run linters
+  pre-commit-ci:
+    name: Pre-Commit
     runs-on: ubuntu-latest
+    env:
+      PYTHON_VERSION: "3.10"
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v3.3.0
-
-      - name: Set up Python
-        uses: actions/setup-python@v4.5.0
+      - name: Check out the codebase
+        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v3 2.5.0
         with:
-          python-version: '3.10'
+          ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Install Python dependencies
-        run: pip install black flake8
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v2.2.0
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@75f3110429a8c05be0e1bf360334e4cced2b63fa # 2.3.3
         with:
-          auto_fix: true
-          black: true
-          black_auto_fix: true
-          flake8: true
-          flake8_auto_fix: false
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip' # caching pip dependencies
+
+      - name: Cache pip
+        uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 # 3.0.11
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('./requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Cache Ansible
+        uses: actions/cache@9b0c1fce7a93df8e3bb8926b0d6e9d89e92f20a7 # 3.0.11
+        with:
+          path: ~/.ansible/collections
+          key: ${{ runner.os }}-ansible-${{ hashFiles('collections/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-ansible-
+
+      - name: Install dependencies
+        run: |
+          echo "::group::Upgrade pip"
+          python3 -m pip install --upgrade pip
+          echo "::endgroup::"
+
+          echo "::group::Install Python requirements from requirements.txt"
+          python3 -m pip install -r requirements.txt
+          echo "::endgroup::"
+
+          echo "::group::Install Ansible role requirements from collections/requirements.yml"
+          ansible-galaxy install -r collections/requirements.yml
+          echo "::endgroup::"
+
+      - name: Run pre-commit
+        uses: pre-commit/action@646c83fcd040023954eafda54b4db0192ce70507 # 3.0.0
+
+  ensure-pinned-actions:
+    name: Ensure SHA Pinned Actions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@e2f20e631ae6d7dd3b768f56a5d2af784dd54791 # v3 2.5.0
+      - name: Ensure SHA pinned actions
+        uses: zgosalvez/github-actions-ensure-sha-pinned-actions@af2eb3226618e2494e3d9084f515ad6dcf16e229 # 2.0.1
+        with:
+          allowlist: |
+            aws-actions/
+            docker/login-action
