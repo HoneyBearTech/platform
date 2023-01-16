@@ -1,14 +1,11 @@
 # graylog
 
-
 ```bash
 mkdir data
 mkdir config
-````
+```
 
 copy `./config` files to `config` folder
-
-
 
 ```bash
 chown -R 1100:1100 ./data
