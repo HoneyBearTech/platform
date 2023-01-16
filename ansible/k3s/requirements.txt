@@ -26,7 +26,7 @@ bracex==2.3.post1
     # via wcmatch
 cachetools==5.2.0
     # via google-auth
-certifi==2022.9.24
+certifi==2022.12.07
     # via
     #   kubernetes
     #   requests
