@@ -12,7 +12,7 @@
       state: stopped
 
   - name: Copy over the timesyncd config
-    template: src=~/ansible/templates/timesyncd.conf dest=/etc/systemd/timesyncd.conf
+    template: src=~/platform/ansible/templates/timesyncd.conf dest=/etc/systemd/timesyncd.conf
 
   - name: Make sure timesyncd is started
     systemd:
