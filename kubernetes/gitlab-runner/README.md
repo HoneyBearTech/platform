@@ -14,5 +14,5 @@ helm install --namespace default gitlab-runner -f values.yml gitlab/gitlab-runne
 update
 
 ```bash
-helm upgrade --namespace default gitlab-runner -f values.yml gitlab/gitlab-runner 
+helm upgrade --namespace default gitlab-runner -f values.yml gitlab/gitlab-runner
 ```
