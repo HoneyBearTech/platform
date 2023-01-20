@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: "*"
   connection: local
   tasks:
     - name: deploy jellyfin docker container
