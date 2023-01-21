@@ -1,0 +1,35 @@
+---
+- name: Setup of UFW over Tailscale
+  hosts: "*"
+  become: true
+  tasks:
+    - name: Allow access over Tailscale 
+      community.general.ufw:
+        rule: allow
+        interface: tailscale0
+        direction: in
+
+    - name: Enable UFW
+      community.general.ufw:
+        state: enabled
+
+    - name: Outgoing allow
+      community.general.ufw:
+        state: enabled
+        direction: outgoing
+        policy: allow
+
+    - name: Incoming deny
+      community.general.ufw:
+        state: enabled
+        direction: incoming
+        policy: deny
+
+    - name: Reload UFW
+      community.general.ufw:
+        state: reloaded
+
+    - name: Restart SSH
+      shell: sudo service ssh restart
+
+        
