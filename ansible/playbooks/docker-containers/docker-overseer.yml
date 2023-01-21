@@ -1,0 +1,22 @@
+---
+- name: Deploy Overseerr in Docker
+  hosts: "*"
+  become: true
+  tasks:
+    - name: Create new data volume for container
+      community.docker.docker_volume:
+       name: overseerr-data
+    - name: Deploy docker container
+      community.docker.docker_container:
+        image: lscr.io/linuxserver/overseerr:latest
+        name: overseerr
+        state: started
+        env:
+           PUID: "1000"
+           PGID: "1000"
+           TZ: "America/Chicago"
+        ports:
+          - "5055:5055"
+        volumes:
+          - overseerr-data:/config
+        restart_policy: unless-stopped

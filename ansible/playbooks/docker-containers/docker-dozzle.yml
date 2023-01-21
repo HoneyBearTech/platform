@@ -1,0 +1,19 @@
+---
+- name: Deploy Dozzle in Docker
+  hosts: "*"
+  become: true
+  tasks:
+    - name: Deploy docker container
+      community.docker.docker_container:
+        image: amir20/dozzle:latest
+        name: dozzle
+        state: started
+        env:
+           PUID: "1000"
+           PGID: "1000"
+           TZ: "America/Chicago"
+        ports:
+          - "4040:8080"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        restart_policy: unless-stopped

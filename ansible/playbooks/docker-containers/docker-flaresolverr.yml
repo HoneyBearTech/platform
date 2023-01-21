@@ -1,0 +1,18 @@
+---
+- name: Deploy FlareSolverr in Docker
+  hosts: "*"
+  become: true
+  tasks:
+    - name: Deploy docker container
+      community.docker.docker_container:
+        image: ghcr.io/flaresolverr/flaresolverr:latest
+        name: flaresolverr
+        state: started
+        env:
+           LOG_LEVEL: ${LOG_LEVEL:-info}
+           LOG_HTML: ${LOG_HTML:-false}
+           CAPTCHA_SOLVER: ${CAPTCHA_SOLVER:-none}
+           TZ: "America/Chicago"
+        ports:
+          - "8191:8191"
+        restart_policy: unless-stopped

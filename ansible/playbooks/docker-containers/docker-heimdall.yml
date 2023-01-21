@@ -1,0 +1,23 @@
+---
+- name: Deploy Heimdall in Docker
+  hosts: "*"
+  become: true
+  tasks:
+    - name: Create new data volume for container
+      community.docker.docker_volume:
+       name: heimdall-data
+    - name: Deploy docker container
+      community.docker.docker_container:
+        image: lscr.io/linuxserver/heimdall:latest
+        name: heimdall
+        state: started
+        env:
+           PUID: "1000"
+           PGID: "1000"
+           TZ: "America/Chicago"
+        ports:
+          - "80:80"
+          - "443:443"
+        volumes:
+          - heimdall-data:/config
+        restart_policy: unless-stopped

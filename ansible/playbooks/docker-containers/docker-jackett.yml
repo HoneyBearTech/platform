@@ -1,0 +1,23 @@
+---
+- name: Deploy Jackett in Docker
+  hosts: "*"
+  become: true
+  tasks:
+    - name: Create new data volume for container
+      community.docker.docker_volume:
+       name: jackett-data
+    - name: Deploy docker container
+      community.docker.docker_container:
+        image: lscr.io/linuxserver/jackett:latest
+        name: jackett
+        state: started
+        env:
+           PUID: "1000"
+           PGID: "1000"
+           TZ: "America/Chicago"
+           AUTO_UPDATE: "true"
+        ports:
+          - "9117:9117"
+        volumes:
+          - jackett-data:/config
+        restart_policy: unless-stopped

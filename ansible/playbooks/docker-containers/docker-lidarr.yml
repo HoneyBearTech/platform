@@ -1,0 +1,24 @@
+---
+- name: Deploy Lidarr in Docker
+  hosts: "*"
+  become: true
+  tasks:
+    - name: Create new data volume for container
+      community.docker.docker_volume:
+       name: lidarr-data
+    - name: Deploy docker container
+      community.docker.docker_container:
+        image: lscr.io/linuxserver/lidarr:latest
+        name: lidarr
+        state: started
+        env:
+           PUID: "1000"
+           PGID: "1000"
+           TZ: "America/Chicago"
+           UMASK: "000"
+        ports:
+          - "8686:8686"
+        volumes:
+          - lidarr-data:/config
+          - /nfs/media:/media
+        restart_policy: unless-stopped

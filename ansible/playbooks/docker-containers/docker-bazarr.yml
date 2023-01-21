@@ -1,0 +1,23 @@
+---
+- name: Deploy Bazarr in Docker
+  hosts: "*"
+  become: true
+  tasks:
+    - name: Create new data volume for container
+      community.docker.docker_volume:
+       name: bazarr-data
+    - name: Deploy docker container
+      community.docker.docker_container:
+        image: lscr.io/linuxserver/bazarr:latest
+        name: bazarr
+        state: started
+        env:
+           PUID: "1000"
+           PGID: "1000"
+           TZ: "America/Chicago"
+        ports:
+          - "6767:6767"
+        volumes:
+          - bazarr-data:/config
+          - /nfs/media:/media
+        restart_policy: unless-stopped
