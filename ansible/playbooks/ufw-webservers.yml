@@ -3,17 +3,14 @@
   hosts: "*"
   become: true
   tasks:
-    - name: Allow OpenSSH in UFW
-      community.general.ufw:
-        rule: allow
-        name: OpenSSH
-        comment: Allow OpenSSH
     - name: Allow NGINX Full in UFW
       community.general.ufw:
         rule: allow
         name: Nginx Full
         comment: Allow NGINX
-    - name: Enable UFW
-      community.general.ufw:
-        state: enabled
-        policy: deny
+
+    - name: Setup of UFW
+      ansible.builtin.import_playbook: ufw.yml
+
+
+

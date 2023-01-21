@@ -26,4 +26,32 @@
 
   - import_playbook: docker-sonarr4k.yml
     when: inventory_hostname in groups["atlas"] 
--
+
+  - import_playbook: docker-radarr.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-radarr4k.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-tdarr.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-readarr.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-resilio-sync.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-prowlarr.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-sabnzbd.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-watchtower.yml
+
+  - import_playbook: docker-uptime-kuma.yml
+    when: inventory_hostname in groups["hyperion"] 
+
+  - import_playbook: docker-overseerr.yml
+    when: inventory_hostname in groups["hyperion"]
