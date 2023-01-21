@@ -1,13 +1,18 @@
 ---
 - name: Setup Tailscale
   hosts: "*"
+<<<<<<< HEAD
+=======
   vars_prompt:
    - name: tailscale_auth
      prompt: Enter the auth key
+>>>>>>> 26d58905442b4ed38ad6b8f5bd6c536ebd533e5f
   tasks:
   - name: Download Tailscale
     shell: curl -fsSL https://tailscale.com/install.sh | sh
-    
+  - name: Include vault
+    ansible.builtin.include_vars:
+      file: mypassword.yml 
   - name: Install | Bring Tailscale Up
     become: true
     ansible.builtin.command: tailscale up --authkey {{ tailscale_auth }}
