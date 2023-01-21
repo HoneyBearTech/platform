@@ -6,7 +6,7 @@
     shell: curl -fsSL https://tailscale.com/install.sh | sh
   - name: Include vault
     ansible.builtin.include_vars:
-      file: mypassword.yml 
+      file: /home/sean/mypassword.yml 
   - name: Install | Bring Tailscale Up
     become: true
     ansible.builtin.command: tailscale up --authkey {{ tailscale_auth }}
