@@ -1,0 +1,14 @@
+---
+- name: Deploy Docker Containers on Atlas and Hyperion
+  hosts: "*"
+  become: true
+  
+- import_playbook: ufw.yml
+
+- import_playbook: ufw-docker.yml
+
+- import_playbook: ufw-docker-atlas.yml
+  when: inventory_hostname in groups["atlas"]
+
+- import_playbook: ufw-docker-hyperion.yml
+  when: inventory_hostname in groups["hyperion"]

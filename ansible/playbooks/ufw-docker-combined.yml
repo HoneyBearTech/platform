@@ -1,0 +1,15 @@
+---
+- name: Setup UFW for Servers
+  hosts: "*"
+  become: true
+  tasks:
+
+  - import_playbook: ufw.yml
+
+  - import_playbook: ufw-docker.yml
+
+  - import_playbook: ufw-docker-atlas.yml
+    when: inventory_hostname in groups["atlas"]
+
+  - import_playbook: ufw-docker-hyperion.yml
+    when: inventory_hostname in groups["hyperion"]
