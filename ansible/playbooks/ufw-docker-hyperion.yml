@@ -3,23 +3,7 @@
   hosts: "*"
   become: true
   tasks:
-  - name: Allow OpenSSH in UFW
-    community.general.ufw:
-      rule: allow
-      name: OpenSSH
-      comment: Allow OpenSSH  
-  - name: Enable UFW
-    community.general.ufw:
-      state: enabled
-      policy: deny  
-  - name: Download UFW-Docker and Set Executable
-    ansible.builtin.get_url:
-      url: https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker
-      dest: /usr/local/bin/ufw-docker
-      mode: +x
-  - name: Install UFW-Docker
-    ansible.builtin.command: ufw-docker install
-  - name: Allow connections from Local Docker Networks
+  - name: Allow connections from Local Docker Hyperion
     community.general.ufw:
       rule: allow
       src: '{{ item }}'

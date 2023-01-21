@@ -1,0 +1,29 @@
+---
+- name: Deploy Docker Containers on Atlas and Hyperion
+  hosts: "*"
+  become: true
+  tasks:
+
+  - import_playbook: docker-bazarr.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-bazarr4k.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-dozzle.yml
+
+  - import_playbook: docker-flaresolverr.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-jackett.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-lidarr.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-sonarr.yml
+    when: inventory_hostname in groups["atlas"] 
+
+  - import_playbook: docker-sonarr4k.yml
+    when: inventory_hostname in groups["atlas"] 
+-
