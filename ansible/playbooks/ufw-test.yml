@@ -1,5 +1,5 @@
 ---
-- name: Deploy Docker Containers on Atlas and Hyperion
+- name: Setup UFW for Servers
   hosts: "*"
   become: true
   
