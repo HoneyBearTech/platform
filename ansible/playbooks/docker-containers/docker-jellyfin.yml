@@ -1,7 +1,7 @@
 ---
 - name: Deploy Jellyfin in Docker
   hosts: "*"
-  become:
+  become: true
   tasks:
     - name: Create new data volume for container
       community.docker.docker_volume:
