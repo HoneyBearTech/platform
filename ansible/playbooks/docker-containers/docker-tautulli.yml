@@ -1,24 +1,22 @@
 ---
-- name: Deploy Sonarr in Docker
+- name: Deploy Tautulli in Docker
   hosts: "*"
   become: true
   tasks:
     - name: Create new data volume for container
       community.docker.docker_volume:
-       name: sonarr-data
+       name: tautulli-data
     - name: Deploy docker container
       community.docker.docker_container:
-        image: lscr.io/linuxserver/sonarr:latest
-        name: sonarr
+        image: lscr.io/linuxserver/tautulli:latest
+        name: tautulli
         state: started
         env:
            PUID: "1000"
            PGID: "1000"
            TZ: "America/Chicago"
-           UMASK: "000"
         ports:
-          - "8989:8989"
+          - "8181:8181"
         volumes:
-          - sonarr-data:/config
-          - /nfs/media:/media
+          - tautulli-data:/config
         restart_policy: unless-stopped

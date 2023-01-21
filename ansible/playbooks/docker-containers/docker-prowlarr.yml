@@ -1,24 +1,22 @@
 ---
-- name: Deploy Sonarr in Docker
+- name: Deploy Prowlarr in Docker
   hosts: "*"
   become: true
   tasks:
     - name: Create new data volume for container
       community.docker.docker_volume:
-       name: sonarr-data
+       name: prowlarr-data
     - name: Deploy docker container
       community.docker.docker_container:
-        image: lscr.io/linuxserver/sonarr:latest
-        name: sonarr
+        image: lscr.io/linuxserver/prowlarr:develop
+        name: prowlarr
         state: started
         env:
            PUID: "1000"
            PGID: "1000"
            TZ: "America/Chicago"
-           UMASK: "000"
         ports:
-          - "8989:8989"
+          - "9696:9696"
         volumes:
-          - sonarr-data:/config
-          - /nfs/media:/media
+          - prowlarr-data:/config
         restart_policy: unless-stopped

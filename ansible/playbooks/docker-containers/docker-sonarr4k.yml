@@ -15,6 +15,7 @@
            PUID: "1000"
            PGID: "1000"
            TZ: "America/Chicago"
+           UMASK: "000"
         ports:
           - "8888:8989"
         volumes:

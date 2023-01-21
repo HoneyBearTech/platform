@@ -1,24 +1,32 @@
 ---
-- name: Deploy Sonarr in Docker
+- name: Deploy Tdarr in Docker
   hosts: "*"
   become: true
   tasks:
     - name: Create new data volume for container
       community.docker.docker_volume:
-       name: sonarr-data
+       name: tdarr-data
     - name: Deploy docker container
       community.docker.docker_container:
-        image: lscr.io/linuxserver/sonarr:latest
-        name: sonarr
+        image: hcr.io/haveagitgat/tdarr:latest
+        name: tdarr
         state: started
         env:
            PUID: "1000"
            PGID: "1000"
            TZ: "America/Chicago"
            UMASK: "000"
+           SERVERIP: "0.0.0.0"
+           SERVERPORT: "8266"
+           WEBUIPORT: "8265"
+           INTERNALNODE: "true"
+           NODEID: "InternalNode" 
         ports:
-          - "8989:8989"
+          - "8265:8265"
+          - "8266:8266"
         volumes:
-          - sonarr-data:/config
+          - tdarr-data/server:/app/server
+          - tdarr-data/config:/app/config
+          - tdarr-data/logs:/app/logs
           - /nfs/media:/media
         restart_policy: unless-stopped

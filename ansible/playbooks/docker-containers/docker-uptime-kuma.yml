@@ -1,24 +1,22 @@
 ---
-- name: Deploy Sonarr in Docker
+- name: Deploy Uptime Kuma in Docker
   hosts: "*"
   become: true
   tasks:
     - name: Create new data volume for container
       community.docker.docker_volume:
-       name: sonarr-data
+       name: uptime-kuma-data
     - name: Deploy docker container
       community.docker.docker_container:
-        image: lscr.io/linuxserver/sonarr:latest
-        name: sonarr
+        image: louislam/uptime-kuma:1
+        name: uptime-kuma
         state: started
         env:
            PUID: "1000"
            PGID: "1000"
            TZ: "America/Chicago"
-           UMASK: "000"
         ports:
-          - "8989:8989"
+          - "3001:3001"
         volumes:
-          - sonarr-data:/config
-          - /nfs/media:/media
+          - uptime-kuma-data:/app/data
         restart_policy: unless-stopped

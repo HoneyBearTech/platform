@@ -1,15 +1,15 @@
 ---
-- name: Deploy Sonarr in Docker
+- name: Deploy Radarr 4k in Docker
   hosts: "*"
   become: true
   tasks:
     - name: Create new data volume for container
       community.docker.docker_volume:
-       name: sonarr-data
+       name: radarr4k-data
     - name: Deploy docker container
       community.docker.docker_container:
-        image: lscr.io/linuxserver/sonarr:latest
-        name: sonarr
+        image: lscr.io/linuxserver/radarr:latest
+        name: radarr4k
         state: started
         env:
            PUID: "1000"
@@ -17,8 +17,8 @@
            TZ: "America/Chicago"
            UMASK: "000"
         ports:
-          - "8989:8989"
+          - "17878:7878"
         volumes:
-          - sonarr-data:/config
+          - radarr4k-data:/config
           - /nfs/media:/media
         restart_policy: unless-stopped

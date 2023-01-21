@@ -1,15 +1,15 @@
 ---
-- name: Deploy Sonarr in Docker
+- name: Deploy Resilio Sync in Docker
   hosts: "*"
   become: true
   tasks:
     - name: Create new data volume for container
       community.docker.docker_volume:
-       name: sonarr-data
+       name: resilio-sync-data
     - name: Deploy docker container
       community.docker.docker_container:
-        image: lscr.io/linuxserver/sonarr:latest
-        name: sonarr
+        image: lscr.io/linuxserver/resilio-sync:latest
+        name: resilio-sync
         state: started
         env:
            PUID: "1000"
@@ -17,8 +17,10 @@
            TZ: "America/Chicago"
            UMASK: "000"
         ports:
-          - "8989:8989"
+          - "8889:8888"
+          - "55555:55555"
         volumes:
-          - sonarr-data:/config
-          - /nfs/media:/media
+          - resilio-sync-data:/config
+          - /nfs/media/resilio/downloads:/downloads
+          - /nfs/media/resilio:/sync
         restart_policy: unless-stopped

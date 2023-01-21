@@ -1,15 +1,15 @@
 ---
-- name: Deploy Sonarr in Docker
+- name: Deploy Readarr in Docker
   hosts: "*"
   become: true
   tasks:
     - name: Create new data volume for container
       community.docker.docker_volume:
-       name: sonarr-data
+       name: readarr-data
     - name: Deploy docker container
       community.docker.docker_container:
-        image: lscr.io/linuxserver/sonarr:latest
-        name: sonarr
+        image: lscr.io/linuxserver/readarr:develop
+        name: readarr
         state: started
         env:
            PUID: "1000"
@@ -17,8 +17,8 @@
            TZ: "America/Chicago"
            UMASK: "000"
         ports:
-          - "8989:8989"
+          - "8787:8787"
         volumes:
-          - sonarr-data:/config
+          - readarr-data:/config
           - /nfs/media:/media
         restart_policy: unless-stopped
