@@ -1,0 +1,25 @@
+---
+- name: Deploy Jellyfin in Docker
+  hosts: "*"
+  become:
+  tasks:
+    - name: Create new data volume for container
+      community.docker.docker_volume:
+       name: jellyfin-data
+    - name: Deploy docker container
+      community.docker.docker_container:
+        image: lscr.io/linuxserver/jellyfin:latest
+        name: jellyfin
+        state: started
+        env:
+           PUID: "1000"
+           PGID: "1000"
+           TZ: "America/Chicago"
+        ports:
+          - "8096:8096"
+          - "8920:8920" #optional
+          - "7359:7359/udp" #optional
+          - "1900:1900/udp" #optional
+        volumes:
+          - jellyfin-data:/config
+        restart_policy: always
