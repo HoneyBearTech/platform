@@ -10,7 +10,7 @@
     
   - name: Install | Bring Tailscale Up
     become: true
-    ansible.builtin.command: tailscale up {{ tailscale_auth }}
+    ansible.builtin.command: tailscale up --authkey {{ tailscale_auth }}
     register: tailscale_start
 
    
