@@ -11,5 +11,3 @@
     become: true
     ansible.builtin.command: tailscale up --authkey {{ tailscale_auth }}
     register: tailscale_start
-
-   
