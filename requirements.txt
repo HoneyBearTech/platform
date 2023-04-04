@@ -5,14 +5,12 @@
 #    pip-compile requirements.in
 #
 ansible-compat==2.2.4
-    # via
-    #   ansible-lint
-    #   molecule
+    # via molecule
 ansible-core==2.14.1
     # via
     #   -r requirements.in
     #   ansible-lint
-ansible-lint==6.8.6
+ansible-lint==6.14.4
     # via -r requirements.in
 arrow==1.2.3
     # via jinja2-time
@@ -187,8 +185,10 @@ six==1.16.0
     #   google-auth
     #   kubernetes
     #   python-dateutil
-subprocess-tee==0.3.5
-    # via ansible-compat
+subprocess-tee==0.4.1
+    # via
+    #   ansible-compat
+    #   ansible-lint
 text-unidecode==1.3
     # via python-slugify
 urllib3==1.26.12
@@ -201,7 +201,7 @@ wcmatch==8.4.1
     # via ansible-lint
 websocket-client==1.4.2
     # via kubernetes
-yamllint==1.29.0
+yamllint==1.30.0
     # via
     #   -r requirements.in
     #   ansible-lint
