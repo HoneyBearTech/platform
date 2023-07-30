@@ -7,6 +7,10 @@
       apt:
         update_cache: yes
         upgrade: 'yes'
+    - name: Remove dependencies that are no longer required
+      apt:
+        autoremove: yes
+        purge: yes    
     - name: Reboot Host(s)
       ansible.builtin.reboot:
         msg: "Reboot by Ansible"
