@@ -1,6 +1,6 @@
 ---
 - name: Remote Update of Raspberry Pi Servers
-  hosts: "rpi"
+  hosts: rpi
   become: true
   tasks:
     - name: apt

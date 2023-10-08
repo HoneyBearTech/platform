@@ -1,6 +1,6 @@
 ---
 - name: Update pihole
-  hosts: "pihole"
+  hosts: pihole
   serial: 1
   tasks:
     - name: apt
