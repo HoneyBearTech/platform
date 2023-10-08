@@ -1,6 +1,7 @@
 ---
 - name: Update pihole
   hosts: "*"
+  serial: 1
   tasks:
   - name: pihole Update
     shell: pihole -up
