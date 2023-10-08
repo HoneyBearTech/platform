@@ -3,6 +3,14 @@
   hosts: "*"
   serial: 1
   tasks:
+  - name: apt
+      apt:
+        update_cache: yes
+        upgrade: 'yes'
+  - name: Remove dependencies that are no longer required
+      apt:
+        autoremove: yes
+        purge: yes    
   - name: pihole Update
     shell: pihole -up
   - name: Reboot Host(s)
