@@ -3,6 +3,7 @@
   hosts: 
     - pihole
   serial: 1
+  become: true
   tasks:
     - name: apt
       apt:
