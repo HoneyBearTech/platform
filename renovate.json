@@ -6,14 +6,23 @@
   "assignees": ["HoneyBearTech"],
   "dependencyDashboard": { "enabled": true },
   "automerge": false,
-  "enabledManagers": ["pip-compile"],
+  "rangeStrategy": "update-lockfile",
+  "enabledManagers": ["pip-compile", "pip_requirements"],
   "pip-compile": {
     "managerFilePatterns": ["/^requirements\\.txt$/"],
     "lockFileMaintenance": { "enabled": false }
   },
+  "pip_requirements": {
+    "managerFilePatterns": ["/^ansible/k3s/requirements\\.txt$/"]
+  },
+  "vulnerabilityAlerts": { "enabled": true },
   "packageRules": [
     {
       "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "matchManagers": ["pip_requirements"],
       "enabled": false
     }
   ]
