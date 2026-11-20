@@ -1,0 +1,20 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "timezone": "America/Chicago",
+  "schedule": ["before 6am on monday"],
+  "assignees": ["HoneyBearTech"],
+  "dependencyDashboard": { "enabled": true },
+  "automerge": false,
+  "enabledManagers": ["pip-compile"],
+  "pip-compile": {
+    "managerFilePatterns": ["/^requirements\\.txt$/"],
+    "lockFileMaintenance": { "enabled": false }
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
+}
