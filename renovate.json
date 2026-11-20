@@ -15,7 +15,7 @@
   "pip_requirements": {
     "includePaths": ["ansible/k3s/requirements.txt"]
   },
-  "vulnerabilityAlerts": { "enabled": true },
+  "vulnerabilityAlerts": { "enabled": true, "labels": ["security", "openssf"] },
   "packageRules": [
     {
       "matchUpdateTypes": ["major"],
