@@ -13,7 +13,7 @@
     "lockFileMaintenance": { "enabled": false }
   },
   "pip_requirements": {
-    "managerFilePatterns": ["/^ansible/k3s/requirements\\.txt$/"]
+    "includePaths": ["ansible/k3s/requirements.txt"]
   },
   "vulnerabilityAlerts": { "enabled": true },
   "packageRules": [
